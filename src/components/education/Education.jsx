@@ -8,7 +8,7 @@ const Education = () => {
     const fetchEducation = async () => {
       try {
         const res = await fetch(
-          "/api/education/get-education"
+          `${import.meta.env.VITE_API_URL}/api/education/get-education`
         );
         const data = await res.json();
         setEducation(data.data || []);

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Contact = () => {
@@ -7,6 +7,7 @@ const Contact = () => {
     email: "",
     message: "",
   });
+
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState(null);
 
@@ -20,18 +21,25 @@ const Contact = () => {
     setStatus(null);
 
     try {
-      const res = await fetch("/api/contacts/create-contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/contacts/create-contact`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(form),
+        }
+      );
 
-      if (!res.ok) throw new Error("Failed");
+      if (!res.ok) {
+        throw new Error("Failed to send message");
+      }
 
       setStatus("success");
       setForm({ name: "", email: "", message: "" });
     } catch (err) {
-      console.error(err);
+      console.error("Contact error:", err);
       setStatus("error");
     } finally {
       setLoading(false);
@@ -39,9 +47,7 @@ const Contact = () => {
   };
 
   return (
-    <section
-      id="contact"
-      className="bg-[#f6f1eb] px-6">
+    <section id="contact" className="bg-[#f6f1eb] px-6 pt-20 pb-32">
       <div className="max-w-5xl mx-auto">
 
         {/* SECTION TITLE */}
@@ -98,10 +104,8 @@ const Contact = () => {
           </div>
 
           {/* FORM */}
-          <form
-            onSubmit={handleSubmit}
-            className="flex-1 max-w-md space-y-6"
-          >
+          <form onSubmit={handleSubmit} className="flex-1 max-w-md space-y-6">
+
             <input
               type="text"
               name="name"
@@ -135,15 +139,7 @@ const Contact = () => {
             <button
               type="submit"
               disabled={loading}
-              className="
-                mt-6
-                px-8 py-3 rounded-full
-                bg-[#1f4f46] text-white
-                text-sm
-                hover:opacity-90
-                transition
-                disabled:opacity-60
-              "
+              className="mt-6 px-8 py-3 rounded-full bg-[#1f4f46] text-white text-sm hover:opacity-90 transition disabled:opacity-60"
             >
               {loading ? "Sending..." : "Send Message"}
             </button>
@@ -159,8 +155,8 @@ const Contact = () => {
                 Something went wrong. Please try again.
               </p>
             )}
-          </form>
 
+          </form>
         </div>
       </div>
     </section>

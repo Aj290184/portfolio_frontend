@@ -8,9 +8,7 @@ const Profile = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const res = await fetch(
-          "/api/profile/get-profile"
-        );
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/profile/get-profile`);
         const data = await res.json();
         setProfile(data.data);
       } catch (err) {

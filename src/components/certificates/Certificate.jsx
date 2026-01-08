@@ -8,9 +8,7 @@ const Certificate = () => {
   useEffect(() => {
     const fetchCertificates = async () => {
       try {
-        const res = await fetch(
-          "/api/certificates/get-certificate"
-        );
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/certificates/get-certificate`);
         const data = await res.json();
         setCertificates(data.data || []);
       } catch (err) {

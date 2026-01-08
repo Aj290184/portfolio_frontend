@@ -8,9 +8,7 @@ const Project = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const res = await fetch(
-          "/api/projects/get-project"
-        );
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/projects/get-project`);
         const data = await res.json();
         setProjects(data.data || []);
       } catch (error) {

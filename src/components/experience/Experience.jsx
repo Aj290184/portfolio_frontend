@@ -7,9 +7,7 @@ const Experience = () => {
   useEffect(() => {
     const fetchExperiences = async () => {
       try {
-        const res = await fetch(
-          "/api/experiences/get-experience"
-        );
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/experiences/get-experience`);
         const data = await res.json();
         setExperiences(data.data || []);
       } catch (error) {
