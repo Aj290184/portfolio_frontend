@@ -45,7 +45,7 @@ const Profile = () => {
 
           <h1 className="font-serif text-[40px] sm:text-[56px] lg:text-[72px] leading-tight text-[#1f4f46]">
             Hi, I’m{" "}
-            <span className="italic">{profile.name}</span>
+            <span>{profile.name}</span>
           </h1>
         </div>
 

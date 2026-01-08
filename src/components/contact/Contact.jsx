@@ -47,7 +47,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="bg-[#f6f1eb] px-6 pt-20 pb-32">
+    <section id="contact" className="bg-[#f6f1eb] px-6 pb-32">
       <div className="max-w-5xl mx-auto">
 
         {/* SECTION TITLE */}
