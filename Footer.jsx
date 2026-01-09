@@ -1,36 +1,16 @@
-import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import {
+  FaGithub,
+  FaLinkedin,
+} from "react-icons/fa";
+import { SiLeetcode } from "react-icons/si";
 
 const Footer = () => {
-  const [active, setActive] = useState("profile");
-
-  useEffect(() => {
-    const updateActive = () => {
-      const hash = window.location.hash.replace("#", "");
-      if (hash) setActive(hash);
-    };
-
-    updateActive();
-    window.addEventListener("hashchange", updateActive);
-
-    return () => {
-      window.removeEventListener("hashchange", updateActive);
-    };
-  }, []);
-
-  const linkClass = (item) =>
-    `capitalize transition ${
-      active === item
-        ? "text-[#1f4f46] font-medium"
-        : "text-[#2f4f4f] hover:opacity-70"
-    }`;
-
   return (
-    <footer className="bg-[#f6f1eb] pt-20 pb-12 px-6">
+    <footer className="bg-[#f6f1eb] pb-12 px-6">
       <div className="max-w-5xl mx-auto">
 
         {/* TOP LINE */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-6 mb-10">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-8 mb-10">
 
           {/* BRAND */}
           <div className="text-center sm:text-left">
@@ -42,17 +22,48 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* NAV LINKS */}
-          <div className="flex gap-8 text-sm">
-            {["profile", "projects", "skills", "contact"].map((item) => (
-              <a
-                key={item}
-                href={`#${item}`}
-                className={linkClass(item)}
-              >
-                {item}
-              </a>
-            ))}
+          {/* SOCIAL ICONS */}
+          <div className="flex items-center gap-8">
+            
+            {/* LINKEDIN */}
+            <a
+              href="https://www.linkedin.com/in/ajay-kumar-536442355/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative text-[#2f4f4f]"
+            >
+              <FaLinkedin className="text-2xl transition transform group-hover:-translate-y-1 group-hover:text-[#1f4f46]" />
+              <span className="absolute -top-8 left-1/2 -translate-x-1/2 text-xs bg-[#1f4f46] text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition">
+                LinkedIn
+              </span>
+            </a>
+
+            {/* LEETCODE */}
+            <a
+              href="https://leetcode.com/u/a_bharoja/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative text-[#2f4f4f]"
+            >
+              <SiLeetcode className="text-2xl transition transform group-hover:-translate-y-1 group-hover:text-[#1f4f46]" />
+              <span className="absolute -top-8 left-1/2 -translate-x-1/2 text-xs bg-[#1f4f46] text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition">
+                LeetCode
+              </span>
+            </a>
+
+            {/* GITHUB */}
+            <a
+              href="https://github.com/Aj290184"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative text-[#2f4f4f]"
+            >
+              <FaGithub className="text-2xl transition transform group-hover:-translate-y-1 group-hover:text-[#1f4f46]" />
+              <span className="absolute -top-8 left-1/2 -translate-x-1/2 text-xs bg-[#1f4f46] text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition">
+                GitHub
+              </span>
+            </a>
+
           </div>
         </div>
 

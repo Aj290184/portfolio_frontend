@@ -7,7 +7,9 @@ const Experience = () => {
   useEffect(() => {
     const fetchExperiences = async () => {
       try {
-        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/experiences/get-experience`);
+        const res = await fetch(
+          `${import.meta.env.VITE_API_URL}/api/experiences/get-experience`
+        );
         const data = await res.json();
         setExperiences(data.data || []);
       } catch (error) {
@@ -29,9 +31,7 @@ const Experience = () => {
   }
 
   return (
-    <section
-      id="experience"
-      className="bg-[#f6f1eb] px-6">
+    <section id="experience" className="bg-[#f6f1eb] px-6 py-24">
       <div className="max-w-5xl mx-auto">
 
         {/* SECTION TITLE */}
@@ -49,7 +49,8 @@ const Experience = () => {
           {experiences.map((exp) => (
             <div
               key={exp._id}
-              className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6">
+              className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6"
+            >
               {/* LEFT CONTENT */}
               <div className="max-w-xl">
                 <h3 className="text-lg sm:text-xl font-medium text-[#1f4f46]">
@@ -60,10 +61,30 @@ const Experience = () => {
                   {exp.company}
                 </p>
 
+                {/* DESCRIPTION */}
                 {exp.description && (
                   <p className="mt-4 text-sm text-[#2f4f4f] leading-relaxed">
                     {exp.description}
                   </p>
+                )}
+
+                {/* LEETCODE PROFILE LINK */}
+                {exp.role?.toLowerCase().includes("leetcode") && (
+                  <a
+                    href="https://leetcode.com/u/a_bharoja/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="
+                      inline-block mt-4
+                      text-sm
+                      text-[#1f4f46]
+                      border-b border-[#1f4f46]
+                      hover:opacity-70
+                      transition
+                    "
+                  >
+                    View LeetCode Profile →
+                  </a>
                 )}
               </div>
 
@@ -86,6 +107,7 @@ const Experience = () => {
             </div>
           ))}
         </div>
+
       </div>
     </section>
   );
